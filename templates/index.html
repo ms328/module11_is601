@@ -1,47 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>FastAPI Calculator</title>
-</head>
-<body>
-    <h1>Hello World</h1>
+<script defer>
+    async function perform(type) {
+        const a = document.getElementById('a').value;
+        const b = document.getElementById('b').value;
 
+        const response = await fetch(`/${type}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ a: Number(a), b: Number(b) })
+        });
 
-    <label for="a">A:</label>
-    <input type="number" id="a" />
+        const data = await response.json();
 
-    <label for="b">B:</label>
-    <input type="number" id="b" />
-
-    <br><br>
-
-    <button onclick="perform('add')">Add</button>
-    <button onclick="perform('subtract')">Subtract</button>
-    <button onclick="perform('multiply')">Multiply</button>
-    <button onclick="perform('divide')">Divide</button>
-
-    <h3 id="result"></h3>
-
-    <script>
-        async function perform(type) {
-            const a = document.getElementById('a').value;
-            const b = document.getElementById('b').value;
-
-            const response = await fetch(`/${type}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ a: Number(a), b: Number(b) })
-            });
-
-            const data = await response.json();
-
-            if (data.result !== undefined) {
-                document.getElementById('result').innerText = `Result: ${data.result}`;
-            } else {
-                document.getElementById('result').innerText = `Error: ${data.error}`;
-            }
+        if (data.result !== undefined) {
+            document.getElementById('result').innerText = `Result: ${data.result}`;
+        } else {
+            document.getElementById('result').innerText = `Error: ${data.error}`;
         }
-    </script>
-</body>
-</html>
+    }
+</script>
