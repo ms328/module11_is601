@@ -83,6 +83,18 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Verify Docker Hub login
+        run: |
+          if [ -z "${{ secrets.DOCKERHUB_USERNAME }}" ] || [ -z "${{ secrets.DOCKERHUB_TOKEN }}" ]; then
+            echo "ERROR: Docker Hub secrets not set. Please add DOCKERHUB_USERNAME and DOCKERHUB_TOKEN in repository secrets." >&2
+            exit 1
+          fi
+          echo "Verifying Docker Hub credentials by attempting docker login..."
+          echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login --username "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin || {
+            echo "ERROR: Docker login failed. The provided token may lack push permissions (Read & Write scope required)." >&2
+            exit 1
+          }
+
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
