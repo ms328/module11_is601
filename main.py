@@ -16,7 +16,10 @@ logger = logging.getLogger(__name__)
 app = FastAPI()
 
 # Setup templates directory
-templates = Jinja2Templates(directory="templates")
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
+
 
 # Pydantic model for request data
 class OperationRequest(BaseModel):
