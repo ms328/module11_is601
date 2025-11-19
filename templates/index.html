@@ -1,4 +1,34 @@
-<script defer>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World & Calculator Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .calculator { margin-top: 30px; }
+        input { margin: 5px; padding: 5px; }
+        button { padding: 5px 10px; }
+        .result { margin-top: 10px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <div class="calculator">
+        <h2>Calculator</h2>
+        <input type="number" id="a" placeholder="First number">
+        <input type="number" id="b" placeholder="Second number"><br>
+        <button onclick="perform('add')">Add</button>
+        <button onclick="perform('subtract')">Subtract</button>
+        <button onclick="perform('multiply')">Multiply</button>
+        <button onclick="perform('divide')">Divide</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script defer>
     async function perform(type) {
         const a = document.getElementById('a').value;
         const b = document.getElementById('b').value;
@@ -17,4 +47,6 @@
             document.getElementById('result').innerText = `Error: ${data.error}`;
         }
     }
-</script>
+    </script>
+</body>
+</html>
