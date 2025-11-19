@@ -1,3 +1,5 @@
+[![CI](https://github.com/ms328/module11_is601/actions/workflows/ci.yml/badge.svg)](https://github.com/ms328/module11_is601/actions/workflows/ci.yml)
+
 Module 11 – FastAPI Calculator with PostgreSQL & Docker
 
 This project implements a fully containerized FastAPI application that performs basic calculator operations (add, subtract, multiply, divide) with a PostgreSQL backend and pgAdmin for database management. It includes unit tests, end-to-end (E2E) tests, Dockerized infrastructure, and CI-ready organization.
